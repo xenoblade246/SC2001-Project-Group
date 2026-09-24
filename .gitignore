@@ -1,1 +1,9 @@
-/.venv
+# Python files
+.venv
+
+# C++ files
+.exe
+.o
+
+# Data files
+data/new_arrays
