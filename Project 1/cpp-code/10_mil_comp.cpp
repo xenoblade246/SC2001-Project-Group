@@ -4,7 +4,9 @@
 
 using namespace std;
 
-const int S = 16; // For now, if we cannot find an optimal S in (c) we can use this.
+const int S = 32;
+// For now, if we cannot find an optimal S in (c) we can use S as above.
+// S optimal for n = 1e7 is 33, so S = 32 is acceptable. 
 
 int main(){
     int n = 10000000;
