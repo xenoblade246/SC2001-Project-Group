@@ -59,7 +59,7 @@ def generate_csv_dataset(dir_path: str, filename: str, num_vertices: int, num_ed
 
 # Generate random sparse/dense/demo graphs
 graph_configs = []
-for v in [100, 250, 500, 1000, 2500, 5000, 10000, 20000]:
+for v in [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2500, 5000, 10000, 20000]:
     sparse_e = v * 5
     graph_configs.append((v, sparse_e))
 for v in [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]:
