@@ -57,18 +57,32 @@ def generate_csv_dataset(dir_path: str, filename: str, num_vertices: int, num_ed
 
 
 
-# Generate random sparse/dense/demo graphs
+DIRECTED = False
+
+def max_edges(v):
+    return v * (v - 1) if DIRECTED else v * (v - 1) // 2
+
 graph_configs = []
+
+# Sparse, E = 5V
 for v in [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2500, 5000, 10000, 20000]:
-    sparse_e = v * 5
-    graph_configs.append((v, sparse_e))
+    graph_configs.append((v, 5 * v))
+
+# Dense, near-complete
 for v in [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]:
-    dense_e = int(0.5 * v * v)
-    graph_configs.append((v, dense_e))
-graph_configs.append([6, 10]) # Demo
+    graph_configs.append((v, max_edges(v)))
+
+# Density sweep at fixed V
+for v in [1000, 2000]:
+    for d in [0.01, 0.02, 0.05, 0.1, 0.2, 0.3, 0.5, 0.75, 1.0]:
+        e = max(v - 1, int(d * max_edges(v)))
+        graph_configs.append((v, e))
+
+# Drop duplicates
+graph_configs = sorted(set(graph_configs))
 
 # Write into a .csv file
-target_dir = "data/new_graphs"
+target_dir = "../data/new_graphs"
 for v_size, e_size in graph_configs:
     filename = f"graph_{v_size}_{e_size}.csv"
     print(f"Generating {filename}...")
