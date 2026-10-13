@@ -7,4 +7,4 @@ __pycache__/
 .o
 
 # Data files
-data/new_arrays
+data/
