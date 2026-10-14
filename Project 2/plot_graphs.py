@@ -33,16 +33,23 @@ def save(fig, out, name, fmt):
 
 
 def plot_time_vs_V(df, out, fmt):
-    """Graph 1: time vs V, one panel per density band."""
-    n_bands = min(3, df["density"].nunique())
+    """
+    Graph 1: time vs V, one panel per density band.
+    """
+    n_bands = min(5, df["density"].nunique())
+
     if n_bands < 1:
         return
+
     if n_bands == 1:
         df = df.assign(band="all densities")
+
     else:
         df = df.assign(band=pd.qcut(df["density"], n_bands, duplicates="drop"))
+
     bands = df["band"].unique()
     fig, axes = plt.subplots(1, len(bands), figsize=(5 * len(bands), 4.2), squeeze=False)
+    
     for ax, band in zip(axes[0], sorted(bands, key=str)):
         d = df[df["band"] == band].groupby("V", as_index=False).mean(numeric_only=True)
         ax.plot(d["V"], d["runtime_mat"], "o-", color=COLOR_MAT, label=LABEL_MAT)
@@ -94,15 +101,15 @@ def plot_normalized(df, out, fmt):
     d["norm_adj"] = d["runtime_adj"] / ((d["V"] + d["E"]) * np.log2(d["V"]))
     fig, axes = plt.subplots(1, 2, figsize=(10, 4.2))
     axes[0].scatter(d["V"], d["norm_mat"], color=COLOR_MAT, alpha=0.7)
-    axes[0].set_title(f"{LABEL_MAT}\nruntime / |V|²")
+    axes[0].set_title(LABEL_MAT)
     axes[1].scatter(d["V"], d["norm_adj"], color=COLOR_ADJ, alpha=0.7)
-    axes[1].set_title(f"{LABEL_ADJ}\nruntime / ((|V|+|E|) log|V|)")
+    axes[1].set_title(LABEL_ADJ)
     for ax in axes:
         ax.set_xlabel("|V|")
         ax.set_ylabel("Normalized runtime")
         ax.grid(alpha=0.3)
         ax.set_ylim(bottom=0)
-    fig.suptitle("Empirical runtime ÷ theoretical bound (flat = analysis confirmed)")
+    fig.suptitle("Empirical runtime ÷ theoretical bound")
     save(fig, out, "3_normalized", fmt)
 
 

@@ -117,4 +117,3 @@ def run_demo(file_path: str): # Demo run to show both algorithms work. |V| = 6 a
 
 if __name__ == "__main__":
     benchmarking("../data/new_graphs", "../data/results/runtimes.csv")
-    run_demo("../data/new_graphs/graph_6_10.csv")

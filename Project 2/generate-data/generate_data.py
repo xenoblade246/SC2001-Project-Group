@@ -73,7 +73,7 @@ for v in [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]:
     graph_configs.append((v, max_edges(v)))
 
 # Density sweep at fixed V
-for v in [1000, 2000]:
+for v in [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2000]:
     for d in [0.01, 0.02, 0.05, 0.1, 0.2, 0.3, 0.5, 0.75, 1.0]:
         e = max(v - 1, int(d * max_edges(v)))
         graph_configs.append((v, e))
