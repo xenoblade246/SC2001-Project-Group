@@ -7,8 +7,12 @@ from dijkstra_adj_mat import dijkstra_adj_mat
 from dijkstra_adj_lst import dijkstra_adj_lst 
 import Dataset_Loader
 
+# Benchmarking functions
 def benchmark_dijkstra_adj_mat(start_node: int, file_path: str, runs: int = 3):
-    """Measure algorithm runtime on CPU. Each dataset is measured 3 times before taking the average."""
+    """
+    Measure algorithm runtime on CPU.
+    Each dataset is measured 3 times before taking the average.
+    """
     num_vertices, num_edges, graph = Dataset_Loader.add_edge_adj_mat(file_path)
     runtimes = []
     for _ in range(runs):
@@ -22,7 +26,10 @@ def benchmark_dijkstra_adj_mat(start_node: int, file_path: str, runs: int = 3):
     return {"num_vertices": num_vertices, "num_edges": num_edges, "solve_time": solve_time, "distances": ans_dists}
 
 def benchmark_dijkstra_adj_lst(start_node: int, file_path: str, runs: int = 3):
-    """Measure algorithm runtime on CPU. Each dataset is measured 3 times before taking the average."""
+    """
+    Measure algorithm runtime on CPU.
+    Each dataset is measured 3 times before taking the average.
+    """
     num_vertices, num_edges, graph = Dataset_Loader.add_edge_adj_lst(file_path)
     runtimes = []
     for _ in range(runs):
