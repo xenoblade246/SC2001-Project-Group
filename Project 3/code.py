@@ -1,16 +1,14 @@
 # Part 1:
 """
 Recursion definition of P(C):
-- Let P(C) be the maximum profit achievable from a set of object types X_1, X_2, ..., X_n under 
-a weight limit C. Since the choice depends on how many types are still available, P(C) is more 
-accurately written as P(n, C), where n is the number of object types considered.
+- Let P(C) be the maximum profit achievable from a set of object types X_1, X_2, ..., X_n under a weight limit C. Since 
+the choice depends on how many types are still available, P(C) is more accurately written as P(n, C), where n is the 
+number of object types considered.
 
-- Define P(i, C) as the maximal profit achievable using the first i types of objects with 
-weight limit C. 
+- Define P(i, C) as the maximal profit achievable using the first i types of objects with weight limit C. 
 
-- Since each type can be chosen indefinitely, taking a copy of type i consumes weight[i - 1] 
-(1-based indexing) capacity but does not remove type i from the candidate set — hence the index 
-stays at i in the include branch.
+- Since each type can be chosen indefinitely, taking a copy of type i consumes weight[i - 1] (1-based indexing) capacity 
+but does not remove type i from the candidate set — hence the index stays at i in the include branch.
 
 - Formula:
     if weight[i - 1] > C, type i cannot fit, so it is excluded: 
@@ -25,8 +23,8 @@ stays at i in the include branch.
 
 - The base case is when the object set is empty (P(0, C) = 0) or the maximum capacity is 0 (P(i, 0) = 0).
 
-- Time complexity: O(2^(n + C / min(weights))) since each call branches at most twice and the recursion depth 
-is bounded by n + C / min(weights).
+- Time complexity: O(2^(n + C / min(weights))) since each call branches at most twice and the recursion depth is bounded 
+by n + C / min(weights).
 
 Below is the Python implementation:
 """
