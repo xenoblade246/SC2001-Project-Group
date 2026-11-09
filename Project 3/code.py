@@ -15,9 +15,9 @@ P(x) = 0 for x < min(weights)
 - We initialise a 1D array called “dp” with dp[x] storing the maximum profit obtainable with weight x. 
 Thus, the value of P(C) will be dp[C].
 - Set dp[x] = 0 for all x < min(weights).
-- For every object type i that weighs less than or equal to C, go through dp from weights[i] to C, since 
-all weights lower than weights[i] cannot take weights[i]. Then, update dp[w] with the larger value between 
-dp[w - weights[i]] + profits[i] and dp[w].
+- For every object type i that weighs less than or equal to C, go through dp using a varible w from 
+weights[i] to C, since all weights lower than weights[i] cannot take weights[i]. Then, update dp[w] 
+with the larger value between dp[w - weights[i]] + profits[i] and dp[w].
 """
 
 # Part 4:
