@@ -4,7 +4,7 @@
 - Since each type can be chosen indefinitely, taking a copy of type i will get profits[i] and consume weights[i], 
 but will not remove type i from the candidate set.
 - Thus, the recursive definiton for the algorithm is:
-P(C) = max(P(C - weights[i]) + profits[i], P(C)) for all objects i.
+P(C) = max(P(C - weights[i]) + profits[i], P(C)) for all objects i with weights[i] <= C.
 P(x) = 0 for x < min(weights)
 """
 
